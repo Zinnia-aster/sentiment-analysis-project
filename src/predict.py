@@ -28,6 +28,6 @@ def predict_sentiment(review):
 
 # Example usage
 if __name__ == "__main__":
-    review_text = "good!"  # User input
+    review_text = input("enter a review:")  # User input
     sentiment = predict_sentiment(review_text)
     print(f"Predicted Sentiment: {sentiment}")
