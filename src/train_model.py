@@ -10,14 +10,12 @@ df = pd.read_csv("Data-folder/cleaned_reviews.csv")
 
 # Remove duplicates
 df = df.drop_duplicates(subset=['cleaned_text'])
-
-# Handle missing values
 df = df.dropna(subset=['Rating', 'cleaned_text'])
 
-# Convert Rating to binary (positive = 1, negative = 0)
+# Convert Ratings to binary labels
 df['label'] = df['Rating'].apply(lambda x: 1 if x >= 3 else 0)  
 
-# Extract features and labels
+# modelling
 X = df['cleaned_text']
 y = df['label']
 
@@ -25,7 +23,6 @@ y = df['label']
 vectorizer = TfidfVectorizer(ngram_range=(1, 2), max_features=10000, stop_words='english')
 X_transformed = vectorizer.fit_transform(X)
 
-# Split Data
 X_train, X_test, y_train, y_test = train_test_split(X_transformed, y, test_size=0.2, random_state=42)
 
 # Logistic Regression with Hyperparameter Tuning
@@ -33,7 +30,6 @@ param_grid = {'C': [0.1, 1, 10, 50]}
 grid = GridSearchCV(LogisticRegression(max_iter=1000), param_grid, cv=5, scoring='accuracy')
 grid.fit(X_train, y_train)
 
-# Best Model
 model = grid.best_estimator_
 
 # Evaluate Model
