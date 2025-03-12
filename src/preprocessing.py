@@ -11,14 +11,14 @@ stop_words = set(stopwords.words('english'))
 def clean_text(text):
     """Function to clean text by removing special characters, converting to lowercase, and removing stopwords."""
     text = text.lower()
-    text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove special characters
-    text = ' '.join(word for word in text.split() if word not in stop_words)  # Remove stopwords
+    text = re.sub(r'[^a-zA-Z\s]', '', text)  
+    text = ' '.join(word for word in text.split() if word not in stop_words)  
     return text
 
 def preprocess_data(input_file, output_file):
     """Function to preprocess review data and extract features using TF-IDF."""
     df = pd.read_csv(input_file)
-    print("Columns in input file:", df.columns)  # Debugging step
+    print("Columns in input file:", df.columns)  
     
     if 'Review' not in df.columns:
         raise ValueError("Error: 'Review' column not found in the input file.")
@@ -33,12 +33,11 @@ def preprocess_data(input_file, output_file):
     # Save cleaned data
     df.to_csv(output_file, index=False)
     
-    # Reload cleaned file to access sentiment labels (assuming 'Rating' represents sentiment)
     df_cleaned = pd.read_csv(output_file)
-    print("Columns in cleaned file:", df_cleaned.columns)  # Debugging step
+    print("Columns in cleaned file:", df_cleaned.columns)  
     
     if 'Rating' in df_cleaned.columns:
-        return x, df_cleaned['Rating']  # Use 'Rating' as sentiment label
+        return x, df_cleaned['Rating']  
     else:
         print("Warning: 'Rating' column not found in the cleaned file.")
         return x, None
