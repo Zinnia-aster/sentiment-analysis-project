@@ -3,7 +3,7 @@
 ## **📌 Project Overview**
 This project focuses on sentiment analysis of user reviews using **TF-IDF vectorization** and an **XGBoost classifier** to classify sentiments as positive or negative. The model achieves an impressive **97.89% accuracy** in predicting sentiment.
 
-### **📂 Dataset**  
+## **📂 Dataset**  
 - The dataset contains **880 user reviews** about the anime *One Piece*.  
 - Each review is accompanied by a **rating** indicating the user’s sentiment.  
 - The dataset was **cleaned** by removing duplicates and null values.  
