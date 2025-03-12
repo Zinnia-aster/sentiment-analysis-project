@@ -1,0 +1,5 @@
+# Ignore all .pkl files
+*.pkl
+
+# Except for those in the model directory
+!Models/*.pkls
